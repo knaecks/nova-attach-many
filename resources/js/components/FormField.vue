@@ -73,7 +73,7 @@ export default {
             let baseUrl = '/nova-vendor/nova-attach-many/';
 
             if(this.resourceId) {
-                Nova.request(baseUrl + this.resourceName + '/' + this.resourceId + '/attachable/' + this.field.attribute)
+                Nova.request(baseUrl + this.resourceName + '/' + this.resourceId + '/attachable/' + (this.field.originalAttribute ? this.field.originalAttribute : this.field.attribute))
                     .then((data) => {
                         this.selected = data.data.selected || [];
                         this.available = data.data.available || [];
@@ -81,7 +81,7 @@ export default {
                     });
             }
             else {
-                Nova.request(baseUrl + this.resourceName + '/attachable/' + this.field.attribute)
+                Nova.request(baseUrl + this.resourceName + '/attachable/' + (this.field.originalAttribute ? this.field.originalAttribute : this.field.attribute))
                     .then((data) => {
                         this.available = data.data.available || [];
                         this.loading = false;
